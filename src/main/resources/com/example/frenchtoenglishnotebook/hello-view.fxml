@@ -4,31 +4,45 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane style="-fx-background-color: rgb(182, 217, 221);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frenchtoenglishnotebook.HelloController">
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frenchtoenglishnotebook.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
 
    <top>
-       <VBox alignment="CENTER" prefHeight="74.0" prefWidth="981.0" spacing="10.0" style="-fx-background-color: rgb(182, 217, 221);" BorderPane.alignment="TOP_CENTER">
-           <HBox alignment="TOP_CENTER" prefHeight="37.0" prefWidth="981.0" spacing="10.0">
+       <VBox alignment="CENTER" prefHeight="90.0" prefWidth="879.0" style="-fx-background-color: rgb(182, 217, 221);" BorderPane.alignment="TOP_CENTER">
+         <HBox alignment="CENTER" prefHeight="31.0" prefWidth="981.0" spacing="20.0" style="-fx-border-color: rgb(84, 108, 173); -fx-border-image-width: 2; -fx-border-radius: 10;">
+            <children>
+               <Button fx:id="sentenceList1Btn" lineSpacing="20.0" mnemonicParsing="false" onAction="#onSentenceList1BtnClick" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Sentence list 1" />
+               <Button fx:id="sentenceList2Btn" mnemonicParsing="false" onAction="#onSentenceList2BtnClick" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Sentence List 2" />
+               <Button fx:id="wordsList1Btn" mnemonicParsing="false" onAction="#onWordsList1BtnClick" prefHeight="25.0" prefWidth="168.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Words and Expressions List 1" />
+               <Button fx:id="wordsList2Btn" mnemonicParsing="false" onAction="#onWordsList2BtnClick" prefHeight="25.0" prefWidth="176.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Words and Expressions List 2" />
+            </children>
+            <padding>
+               <Insets bottom="5.0" top="5.0" />
+            </padding>
+         </HBox>
+           <HBox alignment="CENTER" prefHeight="37.0" prefWidth="981.0" spacing="10.0">
                <children>
                    <VBox prefHeight="100.0" prefWidth="632.0">
                        <children>
                            <Label prefHeight="17.0" prefWidth="62.0" text="French" />
-                           <TextField fx:id="frenchTextField" prefHeight="25.0" prefWidth="147.0" />
+                           <TextField fx:id="frenchTextField" prefHeight="25.0" prefWidth="476.0" />
                        </children>
                    </VBox>
                    <VBox prefHeight="100.0" prefWidth="664.0">
                        <children>
                            <Label prefHeight="17.0" prefWidth="60.0" text="English" />
-                           <TextField fx:id="englishTextField" prefHeight="25.0" prefWidth="179.0" />
+                           <TextField fx:id="englishTextField" prefHeight="25.0" prefWidth="476.0" />
                        </children>
                    </VBox>
                </children>
            </HBox>
-         <Button fx:id="enter" alignment="CENTER" mnemonicParsing="false" onAction="#onSaveButtonClick" prefHeight="25.0" prefWidth="213.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Save" />
+         <Button fx:id="enter" alignment="CENTER" mnemonicParsing="false" onAction="#onSaveButtonClick" prefHeight="25.0" prefWidth="213.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Save">
+            <VBox.margin>
+               <Insets top="5.0" />
+            </VBox.margin></Button>
          <Separator prefWidth="200.0" />
        </VBox>
 
@@ -42,11 +56,16 @@
                   <TextArea fx:id="englishTextArea" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
                   <Button fx:id="translation" mnemonicParsing="false" onAction="#onTranslationButtonClick" prefHeight="25.0" prefWidth="218.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Translation" />
                   <Button fx:id="next" mnemonicParsing="false" onAction="#onNextButtonClick" prefHeight="25.0" prefWidth="181.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Next" />
                   <Button fx:id="previous" mnemonicParsing="false" onAction="#onPreviousButtonClick" prefHeight="25.0" prefWidth="202.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Previous" />
+                  <AnchorPane prefHeight="35.0" prefWidth="327.0">
+                     <children>
+                        <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#onDeleteBtnCLick" prefHeight="25.0" prefWidth="213.0" style="-fx-background-color: rgb(230, 66, 66); -fx-text-fill: WHITE;" text="Delete selected item" AnchorPane.rightAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
                </children>
                <padding>
                   <Insets top="10.0" />
