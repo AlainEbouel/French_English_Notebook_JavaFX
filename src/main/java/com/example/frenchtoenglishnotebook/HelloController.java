@@ -53,12 +53,17 @@ public class HelloController implements Initializable {
     private ObservableList<String> sentenceObservableList;
     private int cursor = 0;
 
+    String currentListName ;
+
+    private ArrayList<Button> buttonArrayList =  new ArrayList<>();
+
     public HelloController() throws IOException, ClassNotFoundException {
          sentenceList1 = new ArrayList<>();
          sentenceList2 = new ArrayList<>();
          wordsList1 = new ArrayList<>();
          wordsList2 = new ArrayList<>();
-         currentSentenceArrayList = sentenceList1;
+        currentListName = "sentenceList1.txt";
+        currentSentenceArrayList = new ArrayList<>();
         loadSavedList();
 
     }
@@ -67,13 +72,14 @@ public class HelloController implements Initializable {
 
         setSentenceObservableList();
 
-
-        //listView.setItems(sentenceObservableList);
-
-
+        buttonArrayList.add(sentenceList1Btn);
+        buttonArrayList.add(sentenceList2Btn);
+        buttonArrayList.add(wordsList1Btn);
+        buttonArrayList.add(wordsList2Btn);
 
         if(currentSentenceArrayList.size() > 0)
            setFrench();
+        setButtonColor(sentenceList1Btn);
     }
 
     @FXML
@@ -84,6 +90,8 @@ public class HelloController implements Initializable {
             Sentence sentence = new Sentence(frenchTextField.getText(), englishTextField.getText());
             currentSentenceArrayList.add(sentence);
             sentenceObservableList.add(sentence.getFrench());
+            listView.getItems().setAll(sentenceObservableList);
+            listView.refresh();
 
             saveList();
         }
@@ -142,34 +150,31 @@ public class HelloController implements Initializable {
     }
     @FXML
     public void onSentenceList1BtnClick(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
-        if(currentSentenceArrayList != sentenceList1) {
-            currentSentenceArrayList = sentenceList1;
-            refreshAll();
-        }
+
+        currentListName = "sentenceList1.txt";
+        refreshAll(sentenceList1Btn);
+
+
+
+
     }
     @FXML
     public void onSentenceList2BtnClick(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
-        if(currentSentenceArrayList != sentenceList2)
-        {
-            currentSentenceArrayList = sentenceList2;
-            refreshAll();
-        }
+        currentListName = "sentenceList2.txt";
+            refreshAll(sentenceList2Btn);
+
     }
     @FXML
     public void onWordsList1BtnClick(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
-        if(currentSentenceArrayList != wordsList1)
-        {
-            currentSentenceArrayList = wordsList1;
-            refreshAll();
-        }
+        currentListName = "wordsList1.txt";
+            refreshAll(wordsList1Btn);
+
+
     }
     @FXML
     public void onWordsList2BtnClick(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
-        if(currentSentenceArrayList != wordsList2)
-        {
-            currentSentenceArrayList = wordsList2;
-            refreshAll();
-        }
+        currentListName = "wordsList2.txt";
+            refreshAll(wordsList2Btn);
     }
 
     @FXML
@@ -186,12 +191,13 @@ public class HelloController implements Initializable {
             saveList();
         }
     }
-    private void refreshAll() throws IOException, ClassNotFoundException {
+    private void refreshAll(Button button) throws IOException, ClassNotFoundException {
         frenchTextArea.setText("");
         englishTextArea.setText("");
         loadSavedList();
         setSentenceObservableList();
         listView.refresh();
+        setButtonColor(button);
     }
 
     private void errorMessage(String message) {
@@ -206,9 +212,8 @@ public class HelloController implements Initializable {
     }
 
     private void saveList() throws IOException {
-        System.out.println("save1= " + (currentSentenceArrayList == sentenceList1));
-        System.out.println("save2= " + (currentSentenceArrayList == wordsList2));
-        FileOutputStream fos = new FileOutputStream(getCurrentListName());
+
+        FileOutputStream fos = new FileOutputStream(currentListName);
         ObjectOutputStream out = new ObjectOutputStream(fos);
         out.writeObject(currentSentenceArrayList);
         out.close();
@@ -216,20 +221,12 @@ public class HelloController implements Initializable {
     }
 
     private void loadSavedList() throws IOException, ClassNotFoundException {
-        System.out.println(getCurrentListName());
-        FileInputStream fis = new FileInputStream(getCurrentListName());
+
+        FileInputStream fis = new FileInputStream(currentListName);
         ObjectInputStream input = new ObjectInputStream(fis);
         currentSentenceArrayList = (ArrayList<Sentence>) input.readObject();
 
-
-        if(currentSentenceArrayList == sentenceList1) sentenceList1 = cu
-        else if(currentSentenceArrayList == sentenceList2)  sentenceList2 = (ArrayList<Sentence>) input.readObject();
-        else if(currentSentenceArrayList == wordsList1) wordsList1 = (ArrayList<Sentence>) input.readObject() ;
-        else
-            wordsList2 = (ArrayList<Sentence>) input.readObject() ;
-
     }
-
     private void setSentenceObservableList()
     {
         sentenceObservableList =  FXCollections.observableArrayList();
@@ -241,15 +238,17 @@ public class HelloController implements Initializable {
 
     }
 
-
-    //Renvois le nom du fichier sur lequel faire la sauvegarde ou le chargement
-    private  String getCurrentListName()
-    {//System.out.println("treturn= " + (currentSentenceArrayList == sentenceList1));
-        if(currentSentenceArrayList == sentenceList1) return "sentenceList1.txt";
-        else if(currentSentenceArrayList == sentenceList2) return "sentenceList2.txt";
-        else if(currentSentenceArrayList == wordsList1) return "wordsList1.txt";
-        return "wordsList2.txt";
-    }
+   private void setButtonColor(Button button)
+   {
+       for(Button btn : buttonArrayList)
+       {
+           if(btn != button) {
+               btn.setStyle("-fx-opacity : 0.5 ");
+           }
+       }
+       button.setStyle("-fx-opacity : 1");
+       button.setStyle("-fx-background-color :  rgb(84, 108, 173)");
+   }
 
 
 }

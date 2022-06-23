@@ -11,8 +11,8 @@
 
 
    <top>
-       <VBox alignment="CENTER" prefHeight="90.0" prefWidth="879.0" style="-fx-background-color: rgb(182, 217, 221);" BorderPane.alignment="TOP_CENTER">
-         <HBox alignment="CENTER" prefHeight="31.0" prefWidth="981.0" spacing="20.0" style="-fx-border-color: rgb(84, 108, 173); -fx-border-image-width: 2; -fx-border-radius: 10;">
+       <VBox alignment="CENTER" prefHeight="90.0" prefWidth="879.0" style="-fx-background-color: rgb(182, 217, 221); -fx-border-color: rgb(84, 108, 173); -fx-border-radius: 10; -fx-background-radius: 10;" BorderPane.alignment="TOP_CENTER">
+         <HBox alignment="CENTER" prefHeight="31.0" prefWidth="981.0" spacing="20.0">
             <children>
                <Button fx:id="sentenceList1Btn" lineSpacing="20.0" mnemonicParsing="false" onAction="#onSentenceList1BtnClick" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Sentence list 1" />
                <Button fx:id="sentenceList2Btn" mnemonicParsing="false" onAction="#onSentenceList2BtnClick" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Sentence List 2" />
@@ -28,13 +28,19 @@
                    <VBox prefHeight="100.0" prefWidth="632.0">
                        <children>
                            <Label prefHeight="17.0" prefWidth="62.0" text="French" />
-                           <TextField fx:id="frenchTextField" prefHeight="25.0" prefWidth="476.0" />
+                           <TextField fx:id="frenchTextField" prefHeight="25.0" prefWidth="476.0">
+                        <VBox.margin>
+                           <Insets left="2.0" />
+                        </VBox.margin></TextField>
                        </children>
                    </VBox>
                    <VBox prefHeight="100.0" prefWidth="664.0">
                        <children>
                            <Label prefHeight="17.0" prefWidth="60.0" text="English" />
-                           <TextField fx:id="englishTextField" prefHeight="25.0" prefWidth="476.0" />
+                           <TextField fx:id="englishTextField" prefHeight="25.0" prefWidth="476.0">
+                        <VBox.margin>
+                           <Insets right="2.0" />
+                        </VBox.margin></TextField>
                        </children>
                    </VBox>
                </children>
@@ -44,6 +50,9 @@
                <Insets top="5.0" />
             </VBox.margin></Button>
          <Separator prefWidth="200.0" />
+         <padding>
+            <Insets left="2.0" right="2.0" />
+         </padding>
        </VBox>
 
    </top>
