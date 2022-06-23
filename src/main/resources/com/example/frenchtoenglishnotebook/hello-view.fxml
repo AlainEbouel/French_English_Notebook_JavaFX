@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane style="-fx-background-color: rgb(182, 217, 221);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frenchtoenglishnotebook.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+
+   <top>
+       <VBox alignment="CENTER" prefHeight="74.0" prefWidth="981.0" spacing="10.0" style="-fx-background-color: rgb(182, 217, 221);" BorderPane.alignment="TOP_CENTER">
+           <HBox alignment="TOP_CENTER" prefHeight="37.0" prefWidth="981.0" spacing="10.0">
+               <children>
+                   <VBox prefHeight="100.0" prefWidth="632.0">
+                       <children>
+                           <Label prefHeight="17.0" prefWidth="62.0" text="French" />
+                           <TextField fx:id="frenchTextField" prefHeight="25.0" prefWidth="147.0" />
+                       </children>
+                   </VBox>
+                   <VBox prefHeight="100.0" prefWidth="664.0">
+                       <children>
+                           <Label prefHeight="17.0" prefWidth="60.0" text="English" />
+                           <TextField fx:id="englishTextField" prefHeight="25.0" prefWidth="179.0" />
+                       </children>
+                   </VBox>
+               </children>
+           </HBox>
+         <Button fx:id="enter" alignment="CENTER" mnemonicParsing="false" onAction="#onSaveButtonClick" prefHeight="25.0" prefWidth="213.0" style="-fx-background-color: green; -fx-text-fill: white;" text="Save" />
+         <Separator prefWidth="200.0" />
+       </VBox>
+
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <TextArea fx:id="frenchTextArea" prefHeight="200.0" prefWidth="200.0" />
+                  <TextArea fx:id="englishTextArea" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+               <children>
+                  <Button fx:id="translation" mnemonicParsing="false" onAction="#onTranslationButtonClick" prefHeight="25.0" prefWidth="218.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Translation" />
+                  <Button fx:id="next" mnemonicParsing="false" onAction="#onNextButtonClick" prefHeight="25.0" prefWidth="181.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Next" />
+                  <Button fx:id="previous" mnemonicParsing="false" onAction="#onPreviousButtonClick" prefHeight="25.0" prefWidth="202.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Previous" />
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+   <bottom>
+      <ListView fx:id="listView" onMouseReleased="#onItemSelected" prefHeight="514.0" prefWidth="981.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
