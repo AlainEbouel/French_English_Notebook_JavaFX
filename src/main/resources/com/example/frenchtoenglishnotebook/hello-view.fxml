@@ -3,6 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frenchtoenglishnotebook.HelloController">
     <padding>
@@ -17,7 +18,7 @@
                <Button fx:id="sentenceList1Btn" lineSpacing="20.0" mnemonicParsing="false" onAction="#onSentenceList1BtnClick" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Sentence list 1" />
                <Button fx:id="sentenceList2Btn" mnemonicParsing="false" onAction="#onSentenceList2BtnClick" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Sentence List 2" />
                <Button fx:id="wordsList1Btn" mnemonicParsing="false" onAction="#onWordsList1BtnClick" prefHeight="25.0" prefWidth="168.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Words and Expressions List 1" />
-               <Button fx:id="wordsList2Btn" mnemonicParsing="false" onAction="#onWordsList2BtnClick" prefHeight="25.0" prefWidth="176.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Words and Expressions List 2" />
+               <Button fx:id="pronunciationBtn" mnemonicParsing="false" onAction="#onPronunciationBtnClick" prefHeight="25.0" prefWidth="176.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Pronunciation" />
             </children>
             <padding>
                <Insets bottom="5.0" top="5.0" />
@@ -28,7 +29,7 @@
                    <VBox prefHeight="100.0" prefWidth="632.0">
                        <children>
                            <Label prefHeight="17.0" prefWidth="62.0" text="French" />
-                           <TextField fx:id="frenchTextField" prefHeight="25.0" prefWidth="476.0">
+                           <TextField fx:id="frenchTextField" onKeyReleased="#onFrenchEnterKeyReleased" prefHeight="25.0" prefWidth="476.0">
                         <VBox.margin>
                            <Insets left="2.0" />
                         </VBox.margin></TextField>
@@ -37,7 +38,7 @@
                    <VBox prefHeight="100.0" prefWidth="664.0">
                        <children>
                            <Label prefHeight="17.0" prefWidth="60.0" text="English" />
-                           <TextField fx:id="englishTextField" prefHeight="25.0" prefWidth="476.0">
+                           <TextField fx:id="englishTextField" onKeyReleased="#onEnglishEnterKeyReleased" prefHeight="25.0" prefWidth="476.0">
                         <VBox.margin>
                            <Insets right="2.0" />
                         </VBox.margin></TextField>
@@ -57,27 +58,36 @@
 
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="174.0" prefWidth="981.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+            <VBox prefHeight="114.0" prefWidth="981.0" spacing="10.0">
                <children>
-                  <TextArea fx:id="frenchTextArea" prefHeight="200.0" prefWidth="200.0" />
-                  <TextArea fx:id="englishTextArea" prefHeight="200.0" prefWidth="200.0" />
+                  <TextArea fx:id="frenchTextArea" prefHeight="32.0" prefWidth="981.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextArea>
+                  <TextArea fx:id="englishTextArea" prefHeight="37.0" prefWidth="981.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextArea>
                </children>
             </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <HBox prefHeight="59.0" prefWidth="981.0" spacing="20.0">
                <children>
                   <Button fx:id="translation" mnemonicParsing="false" onAction="#onTranslationButtonClick" prefHeight="25.0" prefWidth="218.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Translation" />
-                  <Button fx:id="next" mnemonicParsing="false" onAction="#onNextButtonClick" prefHeight="25.0" prefWidth="181.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Next" />
                   <Button fx:id="previous" mnemonicParsing="false" onAction="#onPreviousButtonClick" prefHeight="25.0" prefWidth="202.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Previous" />
-                  <AnchorPane prefHeight="35.0" prefWidth="327.0">
+                  <Button fx:id="next" mnemonicParsing="false" onAction="#onNextButtonClick" prefHeight="25.0" prefWidth="181.0" style="-fx-background-color: rgb(84, 108, 173); -fx-text-fill: white;" text="Next" />
+                  <AnchorPane prefHeight="52.0" prefWidth="326.0">
                      <children>
                         <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#onDeleteBtnCLick" prefHeight="25.0" prefWidth="213.0" style="-fx-background-color: rgb(230, 66, 66); -fx-text-fill: WHITE;" text="Delete selected item" AnchorPane.rightAnchor="10.0" />
                      </children>
+                     <HBox.margin>
+                        <Insets bottom="20.0" />
+                     </HBox.margin>
                   </AnchorPane>
                </children>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets left="20.0" top="10.0" />
                </padding>
             </HBox>
          </children>
@@ -87,6 +97,6 @@
       </VBox>
    </center>
    <bottom>
-      <ListView fx:id="listView" onMouseReleased="#onItemSelected" prefHeight="514.0" prefWidth="981.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="listView" onMouseReleased="#onItemSelected" prefHeight="662.0" prefWidth="981.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
